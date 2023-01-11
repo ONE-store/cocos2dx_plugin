@@ -212,12 +212,18 @@ Android Studio : Chipmunk | 2021.2.1
             ... 
        &lt;/application&gt; 
    &lt;/manifest&gt;
+   
+10. add proguard-rules.pro 
+   -keep class com.gaa.**{*;}
+   -keep class com.onestore.**{*;}
 </pre>
 
 
+
+<br>
 o Please refer to the ONEstore announcement for the following if your TargetSDK version is 30 or 31.<br>
-    o	<a href="https://dev.onestore.co.kr/devpoc/support/news/noticeView.omp?pageNo=4&noticeId=32968">Target SDK version set to 30(OS 11) or later.</a><br>
-    o	<a href="https://dev.onestore.co.kr/devpoc/support/news/noticeView.omp?pageNo=1&noticeId=33072">Target SDK version set to 31(OS 12) or later.</a><br>
+   - <a href="https://dev.onestore.co.kr/devpoc/support/news/noticeView.omp?pageNo=4&noticeId=32968">Target SDK version set to 30(OS 11) or later.</a><br>
+   - <a href="https://dev.onestore.co.kr/devpoc/support/news/noticeView.omp?pageNo=1&noticeId=33072">Target SDK version set to 31(OS 12) or later.</a><br>
 
 
 #	Now,
