@@ -176,7 +176,7 @@ Android Studio : Chipmunk | 2021.2.1
       url "https::repo.onestore.co.kr/repository/onestore-sdk-public"
     }     
 
-8. add dependency in app / build.gradle.
+8. add dependency in app/build.gradle.
     dependencies {
         ...
 
@@ -196,7 +196,11 @@ Android Studio : Chipmunk | 2021.2.1
         ...
     }
 
-9. add &lt;queries&gt; tag to AndroidManifest.xml
+9. add prevent code obfuscation in proguard-rules.pro
+   -keep class com.gaa.**{*;}
+   -keep class com.onestore.**{*;}
+   
+10. add &lt;queries&gt; tag to AndroidManifest.xml
    &lt;manifest&gt;
        &lt;application&gt;
              ...
@@ -213,9 +217,6 @@ Android Studio : Chipmunk | 2021.2.1
        &lt;/application&gt; 
    &lt;/manifest&gt;
    
-10. add proguard-rules.pro 
-   -keep class com.gaa.**{*;}
-   -keep class com.onestore.**{*;}
 </pre>
 
 
