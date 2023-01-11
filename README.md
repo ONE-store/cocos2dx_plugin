@@ -1,9 +1,14 @@
 # The environment for this document is as follows:
 NDK : 21.4.7075529<br>
 Cocos : cocos2d-x-4.0<br>
-Android Studio : Chipmunk | 2021.2.1
+Android Studio : Dolphin | 2021.3.1 Patch 1
 
-
+# Module Description.
+   - ONEstoreNativeALCHelper
+      - ONEstore App License Checker Helper
+   - ONEstoreNativeIAPHelper
+      - ONEstore In-App Purchase SDK Helper 
+      
 # File Structure:
    - onestore<br>
         - ONEstoreNativeALCHelper<br>
@@ -45,12 +50,13 @@ Android Studio : Chipmunk | 2021.2.1
 #	The integration is as follows:
 <pre>
 1. create cocos2dx_project.
-2. copy onestore / *.*   to cocos2dx_project / proj.android / app / onestore / *.*  
-3. copy reference / *.*   to cocos2dx_project / Classes / *.* 
-4. modify CMakeLists.txt in cocos2dx_project( Please refer to the reference/CMakeLists_sample.txt ).
+2. copy onestore/*.*  to cocos2dx_project/proj.android/app/onestore/*.*  
+3. copy reference/AppDelegate_ONEstore.cpp  to cocos2dx_project/Classes/AppDelegate_ONEstore.cpp 
+4. modify CMakeLists.txt in cocos2dx_project( refer to the reference/CMakeLists_sample.txt ).
     ...
     list(APPEND GAME_SOURCE
          Classes/AppDelegate.cpp
+         # add for ONEstore
          Classes/AppDelegate_ONEstore.cpp
          ...
          Classes/HelloWorldScene.cpp
@@ -85,9 +91,7 @@ Android Studio : Chipmunk | 2021.2.1
    endif()
 
 
-5. modify cocos2dx_project/Classes/AppDelegate.h
-    // If you copied reference/AppDelegate.cpp to classes/AppDelegate.cpp in step 3, skip this step.
-
+5. modify cocos2dx_project/Classes/AppDelegate.h( refer to the reference/AppDelegate.h )
     #include "ONEstoreAlcEngine.h"
     #include "ONEstoreIapEngine.h"
 
@@ -149,13 +153,13 @@ Android Studio : Chipmunk | 2021.2.1
         virtual void onError( int code, const char *msg );
     }
 
-    The AppDelegate Class must inherit the ONESTORE::CallbacksListener Class to implement a pure virtual function.
+    The AppDelegate Class must inherit the ONESTORE_ALC::CallbacksListener or ONESTORE_IAP::CallbackListener Class to implement a pure virtual function.
     The implemented file is  "reference/AppDelegate_ONEstore.cpp".
     "AppDelegate_ONEstore.cpp" is just a sample file. Please modify and use it to your service logic.
 
 6. add ONEstore initialze code to cocos2dx_project/Classes/AppDelegate.cpp
     bool AppDelegate::applicationDidFinishLaunching() {
-        // for Onestore
+        // for ONEstore
         initONEstore();
 
         ....
@@ -171,7 +175,7 @@ Android Studio : Chipmunk | 2021.2.1
         ONESTORE_IAP::NativeIapHelper->changeCallbacksListener( this );
     }
 
-7. add url of ONEstore Maven in project / build.gradle.
+7. add url of ONEstore Maven in project/build.gradle.
     maven{
       url "https::repo.onestore.co.kr/repository/onestore-sdk-public"
     }     
@@ -179,20 +183,20 @@ Android Studio : Chipmunk | 2021.2.1
 8. add dependency in app/build.gradle.
     dependencies {
         ...
-
-        implementation fileTree(dir: 'onestore/ONEstoreNativeIapHelper', include: ['*.jar'])
-
-        def onestore_iap_version = "21.00.01"
-        implementation "com.onestorecorp.sdk:sdk-iap:$onestore_iap_version"
-
-        def onestore_config_version = "1.0.0"
-        def onestore_config_region = "sdk-configuration-kr"
-        implementation "com.onestorecorp.sdk:$onestore_config_region:$onestore_config_version"
-
-
+        // for ONEstore ALC
         implementation fileTree(dir: 'onestore/ONEstoreNativeAlcHelper', include: ['*.jar'])
         def onestore_alc_version = "2.0.0"
         implementation "com.onestorecorp.sdk:sdk-licensing:$onestore_alc_version"
+        
+        // for ONEstore IAP
+        implementation fileTree(dir: 'onestore/ONEstoreNativeIapHelper', include: ['*.jar'])
+        def onestore_iap_version = "21.00.01"
+        implementation "com.onestorecorp.sdk:sdk-iap:$onestore_iap_version"
+
+        // for ONEstore language set. default set is [kr].
+        def onestore_config_version = "1.0.0"
+        def onestore_config_region = "sdk-configuration-kr"
+        implementation "com.onestorecorp.sdk:$onestore_config_region:$onestore_config_version"        
         ...
     }
 
@@ -230,6 +234,8 @@ o Please refer to the ONEstore announcement for the following if your TargetSDK 
 #	Now,
 You can use ONESTORE_IAP::NativeIapHelper and ONESTORE_ALC::NativeAlcHelper in native C++ file very simply.<br>
 For more information, visit the ONEstore Developer Site( https://dev.onestore.co.kr ).
+
+
 
 
 Thanks for reading.
