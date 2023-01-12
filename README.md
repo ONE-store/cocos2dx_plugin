@@ -276,8 +276,7 @@ void class::your_function() {
 
 # Now
 > You can use NativeIapHelper and NativeAlcHelper in native C++ file very simply.<br>
-> For more information, refer to ONEstoreAlcEngine.h or ONEstoreIapEngine.h or visit the ONEstore Developer Site.
-> <br>( https://dev.onestore.co.kr )
+> For more information, refer to ONEstoreAlcEngine.h or ONEstoreIapEngine.h or visit the ONEstore Developer Site( https://dev.onestore.co.kr )
 >
 >
 >
