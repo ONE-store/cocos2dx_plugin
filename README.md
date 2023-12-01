@@ -153,23 +153,21 @@
    -keep class com.onestore.**{*;}
    
 8. add dependency in app/build.gradle.
-    dependencies {
-        ...
-        // for ONEstore ALC
-        implementation fileTree(dir: 'onestore/ONEstoreNativeAlcHelper', include: ['*.jar'])
-        def onestore_alc_version = "2.0.0"
-        implementation "com.onestorecorp.sdk:sdk-licensing:$onestore_alc_version"
-        
-        // for ONEstore IAP
-        implementation fileTree(dir: 'onestore/ONEstoreNativeIapHelper', include: ['*.jar'])
-        def onestore_iap_version = "21.00.01"
-        implementation "com.onestorecorp.sdk:sdk-iap:$onestore_iap_version"
+      dependencies {
+         ...
+         // for ALC v2.1.0 & IAP v21.01.00        
 
-        // for ONEstore language set. default set is [kr].
-        def onestore_config_version = "1.0.0"
-        def onestore_config_region = "sdk-configuration-kr"
-        implementation "com.onestorecorp.sdk:$onestore_config_region:$onestore_config_version"        
-        ...
+         // for ONEstore ALC v2.1.0
+         implementation fileTree(dir: 'onestore/ONEstoreNativeAlcHelper', include: ['*.jar'])
+         def onestore_alc_version = "2.1.0"
+         implementation "com.onestorecorp.sdk:sdk-licensing:$onestore_alc_version"
+
+         // for ONEstore IAP v21.01.00  
+         implementation fileTree(dir: 'onestore/ONEstoreNativeIapHelper', include: ['*.jar'])
+         def onestore_iap_version = "21.01.00"
+         implementation "com.onestorecorp.sdk:sdk-iap:$onestore_iap_version"
+
+         ...
     }
 
    
