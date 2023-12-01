@@ -1,3 +1,6 @@
+# Welcome 
+> This cocos2dx_plugin is to help you easily implement ONEstore IAP v21.01.00 and ALC v2.1.0 in your Cocos2dx project, and provides a guide on how to use it.
+
 # Environment
    ### The environment for this document is as follows:
 
